@@ -2,16 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Analytics;
+using UnityEngine.SceneManagement;
 
 public class NavJugador : MonoBehaviour
 {
     float velocidad;
     GameObject GameobjectwithCharacterController;
     CharacterController controller ;
+    GameObject enemigos;
+    GameObject gameover;
+
+
     void Start()
     {
         controller = this.GetComponent<CharacterController>();
-         velocidad = 1.0f;
+        enemigos = GameObject.FindGameObjectWithTag("Enemy");
+        gameover = GameObject.Find("GameOver");
+        
+        velocidad = 1.0f;
+        gameover.SetActive(false);
     }
     void Update()
     {
@@ -20,10 +30,10 @@ public class NavJugador : MonoBehaviour
     {
 
         //Capturo el movimiento en los ejes
-        float movimientoV = Input.GetAxis("Horizontal") * -1;
+        float movimientoV = Input.GetAxis("Horizontal") * 1;
         float movimientoH = Input.GetAxis("Vertical");
 
-        Vector3 anguloTeclas = new Vector3(movimientoH, 0f, movimientoV);
+        Vector3 anguloTeclas = new Vector3(movimientoV, 0f, movimientoH);
         
         transform.Translate(anguloTeclas * velocidad * Time.deltaTime, Space.World);
 
@@ -38,6 +48,25 @@ public class NavJugador : MonoBehaviour
         }
     }
 
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        
+        if (other.CompareTag("MazeGeo"))
+        {
+            Destroy(enemigos);
+           
+        }
+
+        if (other.CompareTag("Enemy"))
+        {
+            gameover.SetActive(true);
+            Time.timeScale = 0;
+        }
+    }
+
+    public void Return()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 
 }

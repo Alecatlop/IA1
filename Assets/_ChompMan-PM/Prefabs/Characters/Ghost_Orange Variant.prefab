@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghost_Orange Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cd46c4c845d21ed4690627267f2edc5d, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cd46c4c845d21ed4690627267f2edc5d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -97,6 +101,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: -3719024733825831422}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: cd46c4c845d21ed4690627267f2edc5d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6355544244181828183}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: cd46c4c845d21ed4690627267f2edc5d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -223114919698719192}
   m_SourcePrefab: {fileID: 100100000, guid: cd46c4c845d21ed4690627267f2edc5d, type: 3}
 --- !u!1 &9163715946089988518 stripped
 GameObject:
@@ -114,7 +126,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -1372625422
   m_Radius: 0.41859728
-  m_Speed: 3.5
+  m_Speed: 0
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -126,3 +138,36 @@ NavMeshAgent:
   m_BaseOffset: 1.1266578
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-6355544244181828183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9163715946089988518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4e4996ba87c8744ab94613c6b2b3197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &-223114919698719192
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9163715946089988518}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.8202004, y: 1.0726548, z: 0.87270904}
+  m_Center: {x: 0.008497089, y: 0.5903304, z: -0.071640596}
