@@ -6,25 +6,18 @@ using UnityEngine;
 
 public class Instanciador : MonoBehaviour
 {
-    GameObject[] spawns;
+    GameObject[] spawnfantasma;
+    GameObject[] spawnitem;
+    public GameObject item;
     public GameObject[] fantasmas;
     bool activo = false;
-
-    int a = 0;
-    int b = 0;
-    int[] checkspawns = new int[5];
-    int[] checkfantasmas = new int[4];
+    int m = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        spawns = GameObject.FindGameObjectsWithTag("Respawn");
-
-        for (int i = 0; i < checkfantasmas.Length; i++)
-            checkfantasmas[i] = 0;
-
-        for (int n = 0; n < checkspawns.Length; n++)
-            checkspawns[n] = 0;
+        spawnfantasma = GameObject.FindGameObjectsWithTag("Respawn");
+        spawnitem = GameObject.FindGameObjectsWithTag("Item");
     }
 
     // Update is called once per frame
@@ -36,26 +29,44 @@ public class Instanciador : MonoBehaviour
         }
     }
 
-   IEnumerator Aleatorio()
+
+    IEnumerator Aleatorio()
     {
         activo = true;
         yield return new WaitForSeconds(10f);
 
         for (int t = 0; t < 2; t++)
         {
-            do
-            {
-                a = Random.Range(0, fantasmas.Length);
-                b = Random.Range(0, spawns.Length);
-            }
-            while( (checkfantasmas[a] == 1) || (checkfantasmas[b] == 1));
+            int a = Random.Range(0, fantasmas.Length);
+            int b = Random.Range(0, spawnfantasma.Length);
 
-            Vector3 spawn = spawns[b].transform.position;
+            Vector3 spawn = spawnfantasma[b].transform.position;
 
             Instantiate(fantasmas[a], spawn, Quaternion.identity);
+        }
+
+        if (m == 0)
+        {
+            int c = Random.Range(0, spawnitem.Length);
+
+            Vector3 spawn2 = spawnitem[c].transform.position;
+
+            Instantiate(item, spawn2, Quaternion.identity);
+
+            m = 1;
+        }
+        else if (m == 1)
+        {
+            yield return new WaitForSeconds(5f);
+
+            GameObject orbe = GameObject.Find("PowerPellet(Clone)");
+            Destroy(orbe);
+            m = 0;
         }
 
         activo = false;
     }
     //array rellenar con numeros asociados a colores, otro array con elpuntero posicion, en PPT rehutilizar scrips botones, el array va con contador
 }
+
+
