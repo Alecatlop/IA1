@@ -8,7 +8,9 @@ public class Instanciador : MonoBehaviour
 {
     GameObject[] spawnfantasma;
     GameObject[] spawnitem;
+    GameObject[] spawncherry;
     public GameObject item;
+    public GameObject cherry;
     public GameObject[] fantasmas;
     bool activo = false;
     int m = 0;
@@ -18,6 +20,13 @@ public class Instanciador : MonoBehaviour
     {
         spawnfantasma = GameObject.FindGameObjectsWithTag("Respawn");
         spawnitem = GameObject.FindGameObjectsWithTag("Item");
+        spawncherry = GameObject.FindGameObjectsWithTag("MazeGeo");
+
+        int d = Random.Range(0, spawncherry.Length);
+
+        Vector3 spawn3 = spawncherry[d].transform.position;
+
+        Instantiate(cherry, spawn3, Quaternion.identity);
     }
 
     // Update is called once per frame

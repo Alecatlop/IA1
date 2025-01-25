@@ -26,8 +26,7 @@ public class NavJugador : MonoBehaviour
     {
         controller = this.GetComponent<CharacterController>();
         velocidad = 1.0f;
-        //canvas = this.GetComponent<CanvasManager>();
-
+        Time.timeScale = 1.0f;
     }
     void Update()
     {
@@ -57,30 +56,46 @@ public class NavJugador : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
-        if (other.CompareTag("MazeGeo"))
+        //if(other.CompareTag("Dot"))
+        //{
+        //    Destroy(other.gameObject);
+        //    print("holaaa");
+        //    canvas.ContadorDot();
+        //}
+
+        //if (other.CompareTag("MazeGeo"))
+        //{
+        //    for (int a = 0; a < enemigos.Length; a++)
+        //    {
+        //        Destroy(enemigos[a]);
+        //        Destroy(other.gameObject);
+        //        canvas.ContadorEnemigos();
+        //    }
+        //}
+
+        if (other.name == "Cherry Variant(Clone)")
         {
             for (int a = 0; a < enemigos.Length; a++)
             {
                 Destroy(enemigos[a]);
                 Destroy(other.gameObject);
-                canvas.Contador();
+                canvas.ContadorEnemigos();
             }
         }
 
-            if (other.CompareTag("Enemy"))
-            {
-               if (comer == false)
-               {
-                    canvas.GameOver();
-                    Time.timeScale = 0;
-               }
-               else
-               {
-                    canvas.Contador();
-                    Destroy(other.gameObject);
-               }
-            }
+        if (other.CompareTag("Enemy"))
+        {
+             if (comer == false)
+             {
+                canvas.GameOver();
+                Time.timeScale = 0;
+             }
+             else
+             {
+                 canvas.ContadorEnemigos();
+                 Destroy(other.gameObject);
+             }
+        }
         
         if (other.name == "PowerPellet(Clone)")
         {
@@ -103,6 +118,7 @@ public class NavJugador : MonoBehaviour
                 enemigos[n].GetComponent<Enemys>().Huir();
             }
         }
+
     }
 
     IEnumerator Cambio()

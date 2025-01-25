@@ -7,26 +7,33 @@ using UnityEngine.SceneManagement;
 public class CanvasManager : MonoBehaviour
 {
     GameObject gameover;
-    public TextMeshProUGUI texto;
-    int contador;
+    GameObject victoria;
+    public TextMeshProUGUI enemigos;
+    public TextMeshProUGUI tiempo;
+    int contenemigos;
+    int condot = 1;
+    float conttiempo;
 
     // Start is called before the first frame update
     void Start()
     {
         gameover = GameObject.Find("GameOver");
+        victoria = GameObject.Find("Victoria");
         gameover.SetActive(false);
+        victoria.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+         conttiempo += Time.deltaTime;
+         tiempo.text = "Tiempo: " + (int)conttiempo;
     }
 
-    public void Contador()
+    public void ContadorEnemigos()
     {
-        contador++;
-        texto.text = ("Enemigos: " + contador);
+        contenemigos++;
+        enemigos.text = ("Enemigos: " + contenemigos);
     }
 
     public void GameOver()
@@ -37,6 +44,18 @@ public class CanvasManager : MonoBehaviour
     public void Return()
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    public void ContadorDot()
+    {
+        condot--;
+
+        if (condot == 0)
+        {
+            victoria.SetActive(true);
+            Time.timeScale = 0;
+
+        }
     }
 
 }
