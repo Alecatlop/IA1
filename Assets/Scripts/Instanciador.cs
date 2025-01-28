@@ -12,6 +12,7 @@ public class Instanciador : MonoBehaviour
     public GameObject item;
     public GameObject cherry;
     public GameObject[] fantasmas;
+    public CanvasManager canvas;
     bool activo = false;
     int m = 0;
 
@@ -52,6 +53,8 @@ public class Instanciador : MonoBehaviour
             Vector3 spawn = spawnfantasma[b].transform.position;
 
             Instantiate(fantasmas[a], spawn, Quaternion.identity);
+
+            canvas.ContadorEnemigos();
         }
 
         if (m == 0)

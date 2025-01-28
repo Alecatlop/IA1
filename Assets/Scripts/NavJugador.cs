@@ -18,7 +18,7 @@ public class NavJugador : MonoBehaviour
     GameObject[] enemigos;
     public GameObject[] lista;
     public Material rojo;
-    public Material blanco;
+    public Material azul;
     public CanvasManager canvas;
     bool comer = false;
 
@@ -27,6 +27,11 @@ public class NavJugador : MonoBehaviour
         controller = this.GetComponent<CharacterController>();
         velocidad = 1.0f;
         Time.timeScale = 1.0f;
+
+        for (int n = 0; n < lista.Length; n++)
+        {
+            lista[n].GetComponent<Renderer>().material = azul;
+        }
     }
     void Update()
     {
@@ -56,22 +61,12 @@ public class NavJugador : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //if(other.CompareTag("Dot"))
-        //{
-        //    Destroy(other.gameObject);
-        //    print("holaaa");
-        //    canvas.ContadorDot();
-        //}
-
-        //if (other.CompareTag("MazeGeo"))
-        //{
-        //    for (int a = 0; a < enemigos.Length; a++)
-        //    {
-        //        Destroy(enemigos[a]);
-        //        Destroy(other.gameObject);
-        //        canvas.ContadorEnemigos();
-        //    }
-        //}
+        if (other.CompareTag("Dot"))
+        {
+            Destroy(other.gameObject);
+            print("holaaa");
+            canvas.ContadorDot();
+        }
 
         if (other.name == "Cherry Variant(Clone)")
         {
@@ -79,7 +74,8 @@ public class NavJugador : MonoBehaviour
             {
                 Destroy(enemigos[a]);
                 Destroy(other.gameObject);
-                canvas.ContadorEnemigos();
+                canvas.ContadorBajas();
+                canvas.ContadorEnemigos0();
             }
         }
 
@@ -94,6 +90,7 @@ public class NavJugador : MonoBehaviour
              {
                  canvas.ContadorEnemigos();
                  Destroy(other.gameObject);
+                 canvas.ContadorBajas();
              }
         }
         
@@ -130,15 +127,15 @@ public class NavJugador : MonoBehaviour
 
         for (int t = 0; t < lista.Length; t++)
         {
-            lista[t].GetComponent<Renderer>().material = blanco;
-            lista[t].GetComponent<NavMeshAgent>().speed = 1;
+            lista[t].GetComponent<Renderer>().material = azul;
+            lista[t].GetComponent<NavMeshAgent>().speed = 0;
             lista[t].GetComponent<Enemys>().Atacar();
         }
 
         for (int t = 0; t < enemigos.Length; t++)
         {
-            enemigos[t].GetComponent<Renderer>().material = blanco;
-            enemigos[t].GetComponent<NavMeshAgent>().speed = 1;
+            enemigos[t].GetComponent<Renderer>().material = azul;
+            enemigos[t].GetComponent<NavMeshAgent>().speed = 0;
             enemigos[t].GetComponent<Enemys>().Atacar();
         }
 

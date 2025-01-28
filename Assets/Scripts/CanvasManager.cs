@@ -9,9 +9,11 @@ public class CanvasManager : MonoBehaviour
     GameObject gameover;
     GameObject victoria;
     public TextMeshProUGUI enemigos;
+    public TextMeshProUGUI eliminaciones;
     public TextMeshProUGUI tiempo;
-    int contenemigos;
-    int condot = 1;
+    int contenemigos = 2;
+    int bajas;
+    int condot = 150;
     float conttiempo;
 
     // Start is called before the first frame update
@@ -34,6 +36,18 @@ public class CanvasManager : MonoBehaviour
     {
         contenemigos++;
         enemigos.text = ("Enemigos: " + contenemigos);
+    }
+
+    public void ContadorEnemigos0()
+    {
+        contenemigos =0;
+        enemigos.text = ("Enemigos: " + contenemigos);
+    }
+
+    public void ContadorBajas()
+    {
+        bajas++;
+        eliminaciones.text = ("Eliminaciones: " + bajas);
     }
 
     public void GameOver()
