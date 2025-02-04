@@ -54,7 +54,7 @@ public class Instanciador : MonoBehaviour
 
             Instantiate(fantasmas[a], spawn, Quaternion.identity);
 
-            canvas.ContadorEnemigos();
+            canvas.SumarEnemigos();
         }
 
         if (m == 0)

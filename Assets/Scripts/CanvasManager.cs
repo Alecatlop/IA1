@@ -32,15 +32,21 @@ public class CanvasManager : MonoBehaviour
          tiempo.text = "Tiempo: " + (int)conttiempo;
     }
 
-    public void ContadorEnemigos()
+    public void SumarEnemigos()
     {
         contenemigos++;
         enemigos.text = ("Enemigos: " + contenemigos);
     }
 
-    public void ContadorEnemigos0()
+    public void RestarEnemigos()
     {
-        contenemigos =0;
+        contenemigos--;
+        enemigos.text = ("Enemigos: " + contenemigos);
+    }
+
+    public void EliminarEnemigos()
+    {
+        contenemigos = 0;
         enemigos.text = ("Enemigos: " + contenemigos);
     }
 

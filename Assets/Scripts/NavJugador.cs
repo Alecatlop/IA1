@@ -25,7 +25,7 @@ public class NavJugador : MonoBehaviour
     void Start()
     {
         controller = this.GetComponent<CharacterController>();
-        velocidad = 1.0f;
+        velocidad = 1f;
         Time.timeScale = 1.0f;
 
         for (int n = 0; n < lista.Length; n++)
@@ -64,7 +64,6 @@ public class NavJugador : MonoBehaviour
         if (other.CompareTag("Dot"))
         {
             Destroy(other.gameObject);
-            print("holaaa");
             canvas.ContadorDot();
         }
 
@@ -75,7 +74,7 @@ public class NavJugador : MonoBehaviour
                 Destroy(enemigos[a]);
                 Destroy(other.gameObject);
                 canvas.ContadorBajas();
-                canvas.ContadorEnemigos0();
+                canvas.EliminarEnemigos();
             }
         }
 
@@ -88,8 +87,8 @@ public class NavJugador : MonoBehaviour
              }
              else
              {
-                 canvas.ContadorEnemigos();
-                 Destroy(other.gameObject);
+                canvas.RestarEnemigos();
+                Destroy(other.gameObject);
                  canvas.ContadorBajas();
              }
         }
@@ -104,14 +103,14 @@ public class NavJugador : MonoBehaviour
             for (int n = 0; n < lista.Length; n++)
             {
                 lista[n].GetComponent<Renderer>().material = rojo;
-                lista[n].GetComponent<NavMeshAgent>().speed = 1;
+                lista[n].GetComponent<NavMeshAgent>().speed = 0.8f;
                 lista[n].GetComponent<Enemys>().Huir();
             }
 
             for (int n = 0; n < enemigos.Length; n++)
             {
                 enemigos[n].GetComponent<Renderer>().material = rojo;
-                enemigos[n].GetComponent<NavMeshAgent>().speed = 1;
+                enemigos[n].GetComponent<NavMeshAgent>().speed = 0.8f;
                 enemigos[n].GetComponent<Enemys>().Huir();
             }
         }
@@ -128,14 +127,14 @@ public class NavJugador : MonoBehaviour
         for (int t = 0; t < lista.Length; t++)
         {
             lista[t].GetComponent<Renderer>().material = azul;
-            lista[t].GetComponent<NavMeshAgent>().speed = 0;
+            lista[t].GetComponent<NavMeshAgent>().speed = 1.5f;
             lista[t].GetComponent<Enemys>().Atacar();
         }
 
         for (int t = 0; t < enemigos.Length; t++)
         {
             enemigos[t].GetComponent<Renderer>().material = azul;
-            enemigos[t].GetComponent<NavMeshAgent>().speed = 0;
+            enemigos[t].GetComponent<NavMeshAgent>().speed = 1.5f;
             enemigos[t].GetComponent<Enemys>().Atacar();
         }
 
